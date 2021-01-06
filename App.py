@@ -9,7 +9,7 @@ app = Flask(__name__)
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'jcjohan'
 app.config['MYSQL_PASSWORD'] = 'password'
-app.config['MYSQL_DB'] = 'flaskcontacts'
+app.config['MYSQL_DB'] = 'monitor'
 
 mysql = MySQL(app)
 
@@ -33,7 +33,7 @@ def AddProvider():
     if request.method == 'POST':
         rif = request.form['rif'] 
         fullname = request.form['fullname'] 
-        fullname = request.form['contributor'] 
+        contributor = request.form['contributor'] 
         phone = request.form['phone'] 
         email = request.form['email'] 
         

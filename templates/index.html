@@ -5,7 +5,7 @@
 <div class="row">
 
     <div class="col-md-5">
-        <div class="card card-body">
+        <div class="card card-body my-4">
             <!-- Show messages of the server with flash module -->
             {% with messages = get_flashed_messages() %}
             {% if messages %}
@@ -46,7 +46,7 @@
         </div>
     </div>
 
-    <div class="col-md-7">
+    <div class="col-12">
         <!-- Table for show data -->
         <table class="table table-striped table-bordered bg-white">
             <thead>
@@ -62,17 +62,17 @@
             <tbody>
                 {% for provider in providers %}
                     <tr>
-                        <td>{{ contact.1 }}</td>
-                        <td>{{ contact.2 }}</td>
-                        <td>{{ contact.3 }}</td>
-                        <td>{{ contact.4 }}</td>
-                        <td>{{ contact.5 }}</td>
+                        <td>{{ provider.1 }}</td>
+                        <td>{{ provider.2 }}</td>
+                        <td>{{ provider.3 }}</td>
+                        <td>{{ provider.4 }}</td>
+                        <td>{{ provider.5 }}</td>
                         <td>
-                            <a href="/edit/{{contact.0}}" class="btn btn-secondary mr-2">
+                            <a href="/edit/{{provider.0}}" class="btn btn-secondary mr-2">
                                 Edit
                             </a>
 
-                            <a href="/delete/{{contact.0}}" class="btn btn-danger">
+                            <a href="/delete/{{provider.0}}" class="btn btn-danger">
                                 Delete
                             </a>
                         </td>
