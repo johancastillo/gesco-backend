@@ -21,17 +21,19 @@ app.secret_key = 'mysecretkey'
 def Home():
     # Consulte to the data base
     cursor = mysql.connection.cursor()
-    cursor.execute('SELECT * FROM contacts')
+    cursor.execute('SELECT * FROM providers')
     data = cursor.fetchall()
 
     # View
-    return render_template('index.html', contacts = data)
+    return render_template('index.html', providers = data)
 
 # Receive data with the method POST from the route root
-@app.route('/add-contact', methods = ['POST'])
-def AddContact():
+@app.route('/add-provider', methods = ['POST'])
+def AddProvider():
     if request.method == 'POST':
+        rif = request.form['rif'] 
         fullname = request.form['fullname'] 
+        fullname = request.form['contributor'] 
         phone = request.form['phone'] 
         email = request.form['email'] 
         
@@ -39,43 +41,47 @@ def AddContact():
         cursor = mysql.connection.cursor()
 
         # Write sentence
-        cursor.execute('INSERT INTO contacts (fullname, phone, email) VALUES (%s, %s, %s)', 
-        (fullname, phone, email))
+        cursor.execute('INSERT INTO providers (rif, fullname, contributor, phone, email) VALUES (%s, %s, %s, %s, %s)', 
+        (rif, fullname, contributor, phone, email))
 
         # Execute 
         mysql.connection.commit()
         
-        flash('Contact Added Successfully')
+        flash('Proveedor agregado correctamente')
         return redirect(url_for('Home'))
 
 # Edit data
 @app.route('/edit/<id>')
-def GetContact(id):
+def GetProvider(id):
     cursor = mysql.connection.cursor()
-    cursor.execute('SELECT * FROM contacts WHERE id = %s', (id))
+    cursor.execute('SELECT * FROM providers WHERE id = %s', (id))
     data = cursor.fetchall()
     
-    return render_template('edit-contact.html', contact = data[0])
+    return render_template('edit-provider.html', provider = data[0])
 
 @app.route('/update/<id>', methods = ['POST'])
 def UpdateContact(id):
     if request.method == 'POST':
+        rif = request.form['rif']
         fullname = request.form['fullname']
+        contributor = request.form['contributor']
         phone = request.form['phone']
         email = request.form['email']
 
         cursor = mysql.connection.cursor()
         cursor.execute(""" 
-            UPDATE contacts
-            SET fullname = %s,
+            UPDATE providers
+            SET rif = %s,
+                fullname = %s,
+                contributor = %s,
                 phone = %s,
                 email = %s
             WHERE id = %s
-        """, (fullname, phone, email, id))
+        """, (rif, fullname, contributor, phone, email, id))
 
         mysql.connection.commit()
 
-        flash('Contact Updated Successfully')
+        flash('Proveedor editado correctamente')
 
         return redirect(url_for('Home'))
 
@@ -83,11 +89,11 @@ def UpdateContact(id):
 @app.route('/delete/<string:id>')
 def deleteContact(id):
     cursor = mysql.connection.cursor()
-    cursor.execute('DELETE FROM contacts WHERE id = {0}'.format(id))
+    cursor.execute('DELETE FROM providers WHERE id = {0}'.format(id))
     mysql.connection.commit()
 
     # Message
-    flash('Contact Removed Successfully')
+    flash('Proveedor eliminado correctamente')
 
     return redirect(url_for('Home'))
 
