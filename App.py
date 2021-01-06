@@ -42,7 +42,7 @@ def AddProvider():
         cursor = mysql.connection.cursor()
 
         # Write sentence
-        cursor.execute('INSERT INTO providers (rif, fullname, contributor, services, phone, email) VALUES (%s, %s, %s, %s, %s)', 
+        cursor.execute('INSERT INTO providers (rif, fullname, contributor, services, phone, email) VALUES (%s, %s, %s, %s, %s, %s)', 
         (rif, fullname, contributor, services, phone, email))
 
         # Execute 
