@@ -11,30 +11,19 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='icomoon/style.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
 
 </head>
 
 <body>
 
   <!-- ***** Top Bar Start ***** -->
-  <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
-    <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">Gesco</a>
-    <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search" />
-    <ul class="navbar-nav px-3">
-        <li class="nav-item text-nowrap">
-        <a class="nav-link" href="#">Cerrar sesión</a>
-        </li>
-    </ul>
-  </header>
+ 
   <!-- ***** Top Bar End ***** -->
 
-    <div class="container mt-5">
-        {% block body %}
-        {% endblock %}
-    </div>
+    
+    {% block body %}
+    {% endblock %}
 
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js" integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU" crossorigin="anonymous"></script>

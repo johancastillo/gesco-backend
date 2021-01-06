@@ -25,7 +25,7 @@ def Home():
     data = cursor.fetchall()
 
     # View
-    return render_template('index.html', providers = data)
+    return render_template('index2.html', providers = data)
 
 # Receive data with the method POST from the route root
 @app.route('/add-provider', methods = ['POST'])
