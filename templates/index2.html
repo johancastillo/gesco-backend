@@ -1,20 +1,25 @@
 {% extends 'layout.html' %}
 
 {% block body %}
+<!-- ***** Top Bar Start ***** -->
 <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
-    <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">Gesco</a>
+    <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">Monitor</a>
     <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
+        <span class="navbar-toggler-icon"></span>
     </button>
     <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
     <ul class="navbar-nav px-3">
-    <li class="nav-item text-nowrap">
-    <a class="nav-link" href="#">Cerrar sesión</a>
-    </li>
+        <li class="nav-item text-nowrap">
+            <a class="nav-link" href="#">Cerrar sesión</a>
+        </li>
     </ul>
-    </header>
-    <div class="container-fluid">
+</header>
+<!-- ***** Top Bar End ***** -->
+
+<div class="container-fluid">
     <div class="row">
+
+        <!-- ***** Menu Start ***** -->
         <nav class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse" id="sidebarMenu">
           <div class="position-sticky pt-3">
             <ul class="nav flex-column">
@@ -35,88 +40,96 @@
             </ul>
           </div>
         </nav>
+        <!-- ***** Menu Start ***** -->
+
         <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-          <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-            <h1 class="h2">Gráfica</h1>
-            <div class="btn-toolbar mb-2 mb-md-0">
-              <div class="btn-group me-2">
-                <button class="btn btn-sm btn-outline-secondary" type="button">Compartir</button>
-                <button class="btn btn-sm btn-outline-secondary" type="button">Exportar</button>
-              </div>
-              <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button"><span data-feather="calendar"></span><span>Esta semana</span></button>
+
+            <!-- ***** Form Start ***** -->
+            <div class="card card-body my-4 col-md-5">
+                <!-- Show messages of the server with flash module -->
+                {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                {% for message in messages %}
+                    <div class="alert alert-primary" role="alert">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+                {% endif %}
+                {% endwith %}
+    
+                <!-- Form for add data -->
+                <form action="/add-provider" method="POST">
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="rif" placeholder="Rif" autocomplete="off" required>
+                    </div>
+    
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="fullname" placeholder="Nombre o razón social" autocomplete="off" required>
+                    </div>
+    
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="contributor" placeholder="Tipo de contribuidor" autocomplete="off" required>
+                    </div>
+    
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="phone" placeholder="Teléfono" autocomplete="off" required>
+                    </div>
+    
+                    <div class="form-group">
+                        <input type="email" class="form-control" name="email" placeholder="Email" autocomplete="off" required>
+                    </div>
+    
+                    <button type="submit" class="btn btn-primary btn-block">
+                        Guardar
+                    </button>
+                </form>
             </div>
-          </div>
-          <canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas>
+            <!-- ***** Form End ***** -->
+
+          <!-- ***** Table *****-->
           <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
             <h2>Proveedores</h2>
             <div class="btn-group me-2">
               <button class="btn btn-sm btn-outline-secondary" type="button">Filtrar</button>
               <button class="btn btn-sm btn-outline-secondary" type="button" id="show-modal">+ Nuevo</button>
             </div>
-          </div><div class="table-responsive">
-    <table class="table table-striped table-sm">
-    <thead>
-    <tr>
-    <th>Rif</th>
-    <th>Nombre</th>
-    <th>Tipo de contribuyente</th>
-    <th>Teléfono</th>
-    <th>Email</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-    <td>V123456559</td>
-    <td>Johan Castillo</td>
-    <td>Ordinario</td>
-    <td>04242183299</td>
-    <td>correo@gmail.com</td>
-    </tr>
-    <tr>
-    <td>V123456789</td>
-    <td>Jc Johan</td>
-    <td>Especial</td>
-    <td>04242183299</td>
-    <td>jcjohan2707@gmail.com</td>
-    </tr>
-    <tr>
-    <td>V123456789</td>
-    <td>Jc Johan</td>
-    <td>Especial</td>
-    <td>04242183299</td>
-    <td>jcjohan2707@gmail.com</td>
-    </tr>
-    <tr>
-    <td>V123456789</td>
-    <td>Jc Johan</td>
-    <td>Especial</td>
-    <td>04242183299</td>
-    <td>jcjohan2707@gmail.com</td>
-    </tr>
-    <tr>
-    <td>V123456789</td>
-    <td>Jc Johan</td>
-    <td>Especial</td>
-    <td>04242183299</td>
-    <td>jcjohan2707@gmail.com</td>
-    </tr>
-    <tr>
-    <td>V123456789</td>
-    <td>Jc Johan</td>
-    <td>Especial</td>
-    <td>04242183299</td>
-    <td>jcjohan2707@gmail.com</td>
-    </tr>
-    <tr>
-    <td>V123456789</td>
-    <td>Jc Johan</td>
-    <td>Especial</td>
-    <td>04242183299</td>
-    <td>jcjohan2707@gmail.com</td>
-    </tr>
-    </tbody>
-    </table>
-    </div>
-        </main></div>
-    </div>
+          </div>
+
+          <div class="table-responsive">
+            <table class="table table-striped table-sm">
+                <thead>
+                    <tr>
+                        <th>Rif</th>
+                        <th>Nombre</th>
+                        <th>Tipo de contribuyente</th>
+                        <th>Teléfono</th>
+                        <th>Email</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {% for provider in providers %}
+                    <tr>
+                        <td>{{ provider.1 }}</td>
+                        <td>{{ provider.2 }}</td>
+                        <td>{{ provider.3 }}</td>
+                        <td>{{ provider.4 }}</td>
+                        <td>{{ provider.5 }}</td>
+                        <td>
+                            <a href="/edit/{{provider.0}}" class="btn btn-secondary mr-2">
+                                Edit
+                            </a>
+
+                            <a href="/delete/{{provider.0}}" class="btn btn-danger">
+                                Delete
+                            </a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </main>
+</div>
+</div>
 {% endblock %}
