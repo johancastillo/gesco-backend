@@ -34,6 +34,7 @@ def AddProvider():
         rif = request.form['rif'] 
         fullname = request.form['fullname'] 
         contributor = request.form['contributor'] 
+        services = request.form['services'] 
         phone = request.form['phone'] 
         email = request.form['email'] 
         
@@ -41,8 +42,8 @@ def AddProvider():
         cursor = mysql.connection.cursor()
 
         # Write sentence
-        cursor.execute('INSERT INTO providers (rif, fullname, contributor, phone, email) VALUES (%s, %s, %s, %s, %s)', 
-        (rif, fullname, contributor, phone, email))
+        cursor.execute('INSERT INTO providers (rif, fullname, contributor, services, phone, email) VALUES (%s, %s, %s, %s, %s)', 
+        (rif, fullname, contributor, services, phone, email))
 
         # Execute 
         mysql.connection.commit()
@@ -65,6 +66,7 @@ def UpdateContact(id):
         rif = request.form['rif']
         fullname = request.form['fullname']
         contributor = request.form['contributor']
+        services = request.form['services']
         phone = request.form['phone']
         email = request.form['email']
 
@@ -74,10 +76,11 @@ def UpdateContact(id):
             SET rif = %s,
                 fullname = %s,
                 contributor = %s,
+                services = %s,
                 phone = %s,
                 email = %s
             WHERE id = %s
-        """, (rif, fullname, contributor, phone, email, id))
+        """, (rif, fullname, contributor, services, phone, email, id))
 
         mysql.connection.commit()
 

@@ -72,6 +72,10 @@
                     <div class="form-group my-2">
                         <input type="text" class="form-control" name="contributor" placeholder="Tipo de contribuidor" autocomplete="off" required>
                     </div>
+
+                    <div class="form-group my-2">
+                        <input type="text" class="form-control" name="services" placeholder="Servicio" autocomplete="off" required>
+                    </div>
     
                     <div class="form-group my-2">
                         <input type="text" class="form-control" name="phone" placeholder="Teléfono" autocomplete="off" required>
@@ -107,6 +111,7 @@
                         <th>Rif</th>
                         <th>Nombre</th>
                         <th>Tipo de contribuyente</th>
+                        <th>Servicio</th>
                         <th>Teléfono</th>
                         <th>Email</th>
                         <th>Acciones</th>
@@ -121,6 +126,7 @@
                         <td>{{ provider.3 }}</td>
                         <td>{{ provider.4 }}</td>
                         <td>{{ provider.5 }}</td>
+                        <td>{{ provider.6 }}</td>
                         <td>
                             <a href="/edit/{{provider.0}}" class="btn btn-secondary mr-2">
                                 <span class="icon-pencil"></span>

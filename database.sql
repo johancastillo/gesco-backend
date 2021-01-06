@@ -11,14 +11,15 @@ CREATE TABLE providers (
     rif VARCHAR(255),
     fullname VARCHAR(255),
     contributor VARCHAR(255),
+    services VARCHAR(255),
     phone VARCHAR(255),
     email VARCHAR(255)
 );
 
 /* Inserting data in the table */
-INSERT INTO providers (rif, fullname, contributor, phone, email) 
-VALUES ("123456","Jc Johan", "Ordinario", "123456", "jcjohan2707@gmail.com"),
-        ("545232", "Keymar Pérez", "Especial", "0415555", "test@gmail.com");
+INSERT INTO providers (rif, fullname, contributor, services, phone, email) 
+VALUES ("123456","Jc Johan", "Ordinario", "Desarrollo Web", "123456", "jcjohan2707@gmail.com"),
+        ("545232", "Keymar Pérez", "Especial", "Web Design", "0415555", "test@gmail.com");
 
 /* Validations */
 SHOW TABLES;
